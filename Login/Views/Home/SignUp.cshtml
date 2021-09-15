@@ -1,0 +1,65 @@
+﻿@{ 
+    
+
+
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/SignUp.css" />
+</head>
+<body>
+    <span class="iconify" data-icon="typcn:arrow-back" data-width="40" data-height="40"></span>
+    
+    <div class="Signup">
+        
+        <form asp-action="Index" method="post" >
+            <div class="Signup-Form" >
+                
+                <label class="Text" placeholder="First Name">First Name</label>
+                <input id="Form-FN"/>
+                <br />
+                <label class="Text"  placeholder="Last Name" >Last Name</label>
+                <input id="Form-LN"/>
+                <br />
+
+                <label class="Text">Date Of Birth</label>
+                <br />
+
+                <label class="Text">Mobile</label>
+                <input id="Form-Mobile"/>
+                <br />
+                <label class="Text"  placeholder="Email Address">Email</label>
+                <input class="Form-Input" id="Form-Email"/>
+                <br />
+                <label class="Text" placeholder="Password">Password</label>
+                <input class="Form-Input" id="Form-Pass"/>
+                <br />
+                <label class="Text" placeholder="Retype Password">Re-type Password</label>
+                <input id="Form-RePass">
+
+                
+
+                <button formmethod="post" action="" id="Form-Submit" > Submit</button>
+                <p>Already a member? <a asp-action="LogIn" asp-controller="Home">Log in!</a></p>
+            </div>
+        </form>
+        
+    </div>
+    <script href="~/js/SignUp.js"></script>
+    <script src="https://kit.fontawesome.com/eaf52a2791.js" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>
