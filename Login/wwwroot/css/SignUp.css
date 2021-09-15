@@ -1,0 +1,70 @@
+﻿body {
+    background-color: #ebebeb;
+}
+
+a:active {
+    text-decoration: none;
+    color: skyblue;
+}
+
+a:hover {
+    text-decoration: none;
+    color: forestgreen;
+}
+
+a:visited {
+    color: navy;
+}
+
+input {
+
+    float: right;
+}
+input:focus{
+
+}
+button {
+    border-radius: 25px;
+    background-color: navy;
+    color: white;
+    padding: 14px 20px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+a:active {
+    text-decoration: none;
+    color: skyblue;
+}
+
+a:hover {
+    text-decoration: none;
+    color: green;
+}
+
+a:visited {
+    color: blueviolet;
+}
+
+
+.Signup {
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 150px;
+    width: 450px;
+    height: 550px;
+    background-color: aliceblue;
+}
+
+.Signup-Form {
+
+    width: 450px;
+    height: 650px;
+    bottom: 0;
+    padding: 18px;
+}

@@ -1,0 +1,82 @@
+﻿body {
+    background-color:darkcyan;
+}
+
+
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+ .Login{
+     border-radius:15px;
+     margin:auto;
+     margin-top:200px;
+     width:400px;
+     height:450px;
+     background-color:aliceblue;
+ }
+
+.Login-Form{
+    padding:18px;
+    padding-top:290px;
+
+}
+
+
+a:active {
+    text-decoration: none;
+    color: skyblue;
+}
+
+a:hover {
+    text-decoration: none;
+    color: green;
+}
+
+a:visited {
+    color: navy;
+}
+
+button {
+
+    border-radius:25px;
+    background-color: navy;
+    color: white;
+    padding: 14px 20px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.Form-Input {
+    border-radius: 10px;
+    display: inline-block;
+    float: right;
+    /*margin-left: 100px;*/
+}
+
+p {
+    margin-left: 20px;
+    font-family: 'Inconsolata', monospace;
+    /*font-family: Impact;*/
+}
+
+#Form-Input-Email{
+
+}
+
+#Form-Pass {
+}
+#Form-Email{
+}
