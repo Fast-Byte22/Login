@@ -1,10 +1,12 @@
+using Login.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-//using MySqlConnector;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,7 @@ namespace Login
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //services.AddDbContext<LoginContext>(options => options.UseMySql(Configuration.GetConnectionString("Default") ,null));
             //services.AddTransient<MySqlConnection>(_ => new MySqlConnection(Configuration["ConnectionStrings:Default"]));
         }
 

@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
 
-namespace Login.Models
-{
-    public class User
-    {
-        //model info
+//namespace Login.Models
+//{
+//    public class User
+//    {
+//        //model info
         
-        int Id {  get; set; }
-        DateTime CreateTime = DateTime.Now;
+//        public int Id {  get; set; }
+//        public DateTime CreateTime = DateTime.Now;
 
-        //user info
-        
-        string FirstName {  get; set; }
-        string LastName {  get; set; }
-        string Email {  get; set; }
-        string PhoneNumber {  get; set; }
-        string Password {  get; set; }
-        DateTime DateOfBirth { get; set; }
-    }
-}
+//        //user info
+
+//        public string FirstName {  get; set; }
+//        public string LastName {  get; set; }
+//        public string Email {  get; set; }
+//        public string PhoneNumber {  get; set; }
+//        public string Password {  get; set; }
+//        public DateTime DateOfBirth { get; set; }
+//    }
+//}

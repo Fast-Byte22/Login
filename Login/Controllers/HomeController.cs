@@ -1,7 +1,6 @@
 ﻿using Login.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MySql.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
 //using MySqlConnector;
 using System;
