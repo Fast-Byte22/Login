@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-//using var connection = new MySqlConnection();
+
 
 namespace Login.Controllers
 {
@@ -24,7 +24,7 @@ namespace Login.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToAction("LogIn");
+            return RedirectToAction("Index","Usertables");
         }
 
         //GET

@@ -27,8 +27,9 @@ namespace Login
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            //services.AddDbContext<LoginContext>(options => options.UseMySql(Configuration.GetConnectionString("Default") ,null));
-            //services.AddTransient<MySqlConnection>(_ => new MySqlConnection(Configuration["ConnectionStrings:Default"]));
+            services.AddDbContext<usersContext>(options => options.UseMySQL(Configuration.GetConnectionString("Default") 
+                
+                ));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

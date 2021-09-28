@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Login.Context
+namespace Login.Models
 {
     public partial class Usertable
     {
