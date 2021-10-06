@@ -1,5 +1,4 @@
 ﻿using System;
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,6 +25,32 @@ namespace Login.Controllers
             return View(await _context.Usertables.ToListAsync());
         }
 
+        // GET: Usertables/SignUp
+        public async Task<IActionResult> SignUp()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SignUp([Bind("Id,FirstName,LastName,Email,PhoneNumber,Password,DateOfBirth")] Usertable usertable)
+        {
+            usertable.CreateTime = GetUtcNow().ToString();
+            if (ModelState.IsValid)
+            {
+                _context.Add(usertable);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(usertable);
+
+            static DateTime GetUtcNow()
+            {
+                return DateTime.UtcNow;
+            }
+        }
+
+      
         // GET: Usertables/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -49,6 +74,7 @@ namespace Login.Controllers
         {
             return View();
         }
+
 
         // POST: Usertables/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -150,5 +176,7 @@ namespace Login.Controllers
         {
             return _context.Usertables.Any(e => e.Id == id);
         }
+
+
     }
 }

@@ -27,9 +27,7 @@ namespace Login
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<usersContext>(options => options.UseMySQL(Configuration.GetConnectionString("Default") 
-                
-                ));
+            services.AddDbContext<usersContext>(options => options.UseMySQL("Server=127.0.0.1;Port=3306;Database=users;Uid=admin;Pwd=bartsql666;SslMode=Preferred;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
