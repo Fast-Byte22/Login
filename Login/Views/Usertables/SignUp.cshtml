@@ -15,35 +15,41 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <input asp-for="FirstName" class="form-control" id="FNI" />
+                <span asp-validation-for="FirstName" class="text-danger" id="FNS"></span>
             </div>
             <div class="form-group">
                 <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+                <input asp-for="LastName" class="form-control" id="LNI" />
+                <span asp-validation-for="LastName" class="text-danger" id="LNS"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <input asp-for="Email" type="email" class="form-control" id="EI" />
+                <span asp-validation-for="Email" class="text-danger" id="ES"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PhoneNumber" class="control-label"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                <input asp-for="PhoneNumber" class="form-control" id="PNI" />
+                <span asp-validation-for="PhoneNumber" class="text-danger" id="PNS"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
+                <input asp-for="Password" type="password" class="form-control" id="PI" />
+                <span asp-validation-for="Password" class="text-danger" id="PS"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RePassword" class="control-label"></label>
+                <input asp-for="RePassword" type="password" class="form-control" id="RPI" />
+                <span asp-validation-for="RePassword" class="text-danger" id="RPS"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DateOfBirth" class="control-label"></label>
-                <input asp-for="DateOfBirth" class="form-control" />
-                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                <input asp-for="DateOfBirth" type="date" class="form-control" id="DOMI" />
+                <span asp-validation-for="DateOfBirth" class="text-danger" id="DOMS"></span>
             </div>
             <div class="form-group">
+                <input type="button" onclick="checkInput()" value="Create" class="btn btn-primary" />
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -53,4 +59,67 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+<script>
+    var FNI = document.getElementById("FNI");
+    var FNS = document.getElementById("FNS");
 
+    var LNI = document.getElementById("LNI");
+    var LNS = document.getElementById("LNS");
+
+    var EI = document.getElementById("EI");
+    var ES = document.getElementById("ES");
+
+    var PNI = document.getElementById("PNI");
+    var PNS = document.getElementById("PNS");
+
+    var PI = document.getElementById("PI");
+    var PS = document.getElementById("PS");
+
+    var RPI = document.getElementById("RPI");
+    var RPS = document.getElementById("RPS");
+
+    var DOMI = document.getElementById("DOMI");
+    var DOMS = document.getElementById("DOMS");
+
+            function checkInput() {
+
+                var i = true
+                if (FNI.value.length < 2) {
+
+                    FNS.textContent = "First Name is too short.";
+                    i = false
+                } else {
+                    FNS.textContent = "";
+                }
+                if (LNI.value.length < 2) {
+                    LNS.textContent = "Last Name is too short.";
+                    i = false
+                } else {
+                    LNS.textContent = "";
+                }
+                if (validEmail(EI.value) || PNI.value.length < 6) {
+                    ES.textContent = "Invalid Email";
+                    PNS.textContent  = "Invalid Phone Number"
+                    i = false
+                } else {
+                    PNS.textContent = "";
+                    Es.textContent = "";
+                }
+                if (PI.value != RPI.value) {
+                    RPS.textContent = "Passwords are not same.";
+                    i = false
+                } else {
+                    RPS.textContent = "";
+                }
+                if (DOMI.value.length < 5) {
+                    DOMS.textContent = "Invalid Date of Birth.";
+                    i = false
+                } else {
+                    DOMS.textContent = "";
+                }
+            }
+        function validEmail(email){
+            const regex = /^((?!\.)[\w\-_.]*[^.])(\w+)(\.\w+(\.\w+)?[^.\W])$/;
+             return regex.test(email);
+        }
+</script>
