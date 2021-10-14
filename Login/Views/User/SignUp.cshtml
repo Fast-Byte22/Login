@@ -1,6 +1,9 @@
 ﻿@model Login.Models.SignUpViewModel
+@using Login.Models
 
 @{
+    
+    
     ViewData["Title"] = "SignUp";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -11,7 +14,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="SignUp">
+        <form asp-action="SignUp" id="SignUpForm" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
@@ -48,9 +51,15 @@
                 <input asp-for="DateOfBirth" type="date" class="form-control" id="DOMI" />
                 <span asp-validation-for="DateOfBirth" class="text-danger" id="DOMS"></span>
             </div>
+            <!--<div class="form-group">
+                <label asp-for="Country" class="control-label"></label>-->
+
+                @*<select asp-for="Country" asp-items="Model.Countries"></select>
+                <span asp-validation-for="Country" class="text-danger" id="CS"></span/>*@
+            <!--</div>-->
             <div class="form-group">
                 <input type="button" onclick="checkInput()" value="Create" class="btn btn-primary" />
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" id="Submit-Button" />
             </div>
         </form>
     </div>
@@ -60,6 +69,7 @@
     <a asp-action="Index">Back to List</a>
 </div>
 <script>
+    
     var FNI = document.getElementById("FNI");
     var FNS = document.getElementById("FNS");
 
@@ -97,14 +107,35 @@
                 } else {
                     LNS.textContent = "";
                 }
-                if (validEmail(EI.value) || PNI.value.length < 6) {
-                    ES.textContent = "Invalid Email";
-                    PNS.textContent  = "Invalid Phone Number"
-                    i = false
-                } else {
-                    PNS.textContent = "";
-                    Es.textContent = "";
+                if (EI.value.length > 5) {
+                    if (validEmail(EI.value)) {
+                        ES.value = '';
+                    }
+                    else if (PNI.value.length > 6) {
+                        ES.value = '';
+                    }
+                    else {
+                        i = false;
+                        ES.value = 'Email is invalid.';
+                        ES.value = 'Phone number is too short.';
+                    }
+                  
                 }
+                else if (PNI.value.length > 6){
+                    ES.value = '';
+                    PNS.value = '';
+                } else {
+                    i = false;
+                    ES.value = 'Email is too short.';
+                    PNS.value = 'Phone number is too short.';
+                }
+                //if EI.value.length > 5) {
+                //    if (validEmail( EI.value)) {
+                //        EI.value = '';
+                //    } else {
+                //        i = false;
+                //    }
+                //}
                 if (PI.value != RPI.value) {
                     RPS.textContent = "Passwords are not same.";
                     i = false
@@ -117,9 +148,12 @@
                 } else {
                     DOMS.textContent = "";
                 }
+                if (i) {
+                    this.document.getElementById("SignUpForm").submit();
+                    console.error("error")
+                }
             }
-        function validEmail(email){
-            const regex = /^((?!\.)[\w\-_.]*[^.])(\w+)(\.\w+(\.\w+)?[^.\W])$/;
-             return regex.test(email);
-        }
+
+
 </script>
+<script src="~/js/EmailValid.js"></script>

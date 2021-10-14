@@ -24,7 +24,7 @@ namespace Login.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToAction("SignUp","Usertables");
+            return RedirectToAction("SignUp","User");
         }
 
         //GET

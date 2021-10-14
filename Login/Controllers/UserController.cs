@@ -10,11 +10,11 @@ using Login.Models;
 
 namespace Login.Controllers
 {
-    public class UsertablesController : Controller
+    public class UserController : Controller
     {
         private readonly usersContext _context;
 
-        public UsertablesController(usersContext context)
+        public UserController(usersContext context)
         {
             _context = context;
         }
@@ -29,6 +29,10 @@ namespace Login.Controllers
         public async Task<IActionResult> SignUp()
         {
             return View();
+        }
+        public async Task<IActionResult> List()
+        {
+            return NotFound();
         }
 
         [HttpPost]
