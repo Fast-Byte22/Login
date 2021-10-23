@@ -31,11 +31,7 @@
                 <input asp-for="Email" type="email" class="form-control" id="EI" />
                 <span asp-validation-for="Email" class="text-danger" id="ES"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
-                <input asp-for="PhoneNumber" class="form-control" id="PNI" />
-                <span asp-validation-for="PhoneNumber" class="text-danger" id="PNS"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
                 <input asp-for="Password" type="password" class="form-control" id="PI" />
@@ -111,31 +107,15 @@
                     if (validEmail(EI.value)) {
                         ES.value = '';
                     }
-                    else if (PNI.value.length > 6) {
-                        ES.value = '';
-                    }
                     else {
                         i = false;
                         ES.value = 'Email is invalid.';
-                        ES.value = 'Phone number is too short.';
                     }
-                  
                 }
-                else if (PNI.value.length > 6){
-                    ES.value = '';
-                    PNS.value = '';
-                } else {
-                    i = false;
-                    ES.value = 'Email is too short.';
-                    PNS.value = 'Phone number is too short.';
+                else {
+                        ES.value = "Email is too short.";
+                        i = false;
                 }
-                //if EI.value.length > 5) {
-                //    if (validEmail( EI.value)) {
-                //        EI.value = '';
-                //    } else {
-                //        i = false;
-                //    }
-                //}
                 if (PI.value != RPI.value) {
                     RPS.textContent = "Passwords are not same.";
                     i = false
