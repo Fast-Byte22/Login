@@ -11,11 +11,7 @@ namespace Login.Models
         public int Id { get; set; }
         [DataType(DataType.Date)]
         public string CreateTime { get; set; }
-        [StringLength(50)]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
         public string FirstName { get; set; }
-        [StringLength(50)]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
         public string LastName { get; set; }
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }

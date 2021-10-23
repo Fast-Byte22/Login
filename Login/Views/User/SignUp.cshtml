@@ -1,16 +1,17 @@
 ﻿@model Login.Models.SignUpViewModel
 @using Login.Models
+@using System.ComponentModel.DataAnnotations
+
 
 @{
-    
-    
+
+
     ViewData["Title"] = "SignUp";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>SignUp</h1>
+<h1>Sign Up Form</h1>
 
-<h4>SignUpViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -18,43 +19,38 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" id="FNI" />
-                <span asp-validation-for="FirstName" class="text-danger" id="FNS"></span>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" id="LNI" />
-                <span asp-validation-for="LastName" class="text-danger" id="LNS"></span>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" type="email" class="form-control" id="EI" />
-                <span asp-validation-for="Email" class="text-danger" id="ES"></span>
+                <input asp-for="Email" type="email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+
             </div>
 
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" type="password" class="form-control" id="PI" />
-                <span asp-validation-for="Password" class="text-danger" id="PS"></span>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RePassword" class="control-label"></label>
-                <input asp-for="RePassword" type="password" class="form-control" id="RPI" />
-                <span asp-validation-for="RePassword" class="text-danger" id="RPS"></span>
+                <label asp-for="RePassword" class="control-label">Confirm Password</label>
+                <input asp-for="RePassword" type="password" class="form-control" />
+                <span asp-validation-for="RePassword" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DateOfBirth" class="control-label"></label>
-                <input asp-for="DateOfBirth" type="date" class="form-control" id="DOMI" />
-                <span asp-validation-for="DateOfBirth" class="text-danger" id="DOMS"></span>
+                <input asp-for="DateOfBirth" type="date" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
-            <!--<div class="form-group">
-                <label asp-for="Country" class="control-label"></label>-->
-
-                @*<select asp-for="Country" asp-items="Model.Countries"></select>
-                <span asp-validation-for="Country" class="text-danger" id="CS"></span/>*@
-            <!--</div>-->
             <div class="form-group">
-                <input type="button" onclick="checkInput()" value="Create" class="btn btn-primary" />
+
                 <input type="submit" value="Create" class="btn btn-primary" id="Submit-Button" />
             </div>
         </form>
@@ -64,76 +60,11 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-<script>
+
+
+@section Scripts {
     
-    var FNI = document.getElementById("FNI");
-    var FNS = document.getElementById("FNS");
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
 
-    var LNI = document.getElementById("LNI");
-    var LNS = document.getElementById("LNS");
-
-    var EI = document.getElementById("EI");
-    var ES = document.getElementById("ES");
-
-    var PNI = document.getElementById("PNI");
-    var PNS = document.getElementById("PNS");
-
-    var PI = document.getElementById("PI");
-    var PS = document.getElementById("PS");
-
-    var RPI = document.getElementById("RPI");
-    var RPS = document.getElementById("RPS");
-
-    var DOMI = document.getElementById("DOMI");
-    var DOMS = document.getElementById("DOMS");
-
-            function checkInput() {
-
-                var i = true
-                if (FNI.value.length < 2) {
-
-                    FNS.textContent = "First Name is too short.";
-                    i = false
-                } else {
-                    FNS.textContent = "";
-                }
-                if (LNI.value.length < 2) {
-                    LNS.textContent = "Last Name is too short.";
-                    i = false
-                } else {
-                    LNS.textContent = "";
-                }
-                if (EI.value.length > 5) {
-                    if (validEmail(EI.value)) {
-                        ES.value = '';
-                    }
-                    else {
-                        i = false;
-                        ES.value = 'Email is invalid.';
-                    }
-                }
-                else {
-                        ES.value = "Email is too short.";
-                        i = false;
-                }
-                if (PI.value != RPI.value) {
-                    RPS.textContent = "Passwords are not same.";
-                    i = false
-                } else {
-                    RPS.textContent = "";
-                }
-                if (DOMI.value.length < 5) {
-                    DOMS.textContent = "Invalid Date of Birth.";
-                    i = false
-                } else {
-                    DOMS.textContent = "";
-                }
-                if (i) {
-                    this.document.getElementById("SignUpForm").submit();
-                    console.error("error")
-                }
-            }
-
-
-</script>
-<script src="~/js/EmailValid.js"></script>
+}
