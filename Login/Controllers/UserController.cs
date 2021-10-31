@@ -194,31 +194,5 @@ namespace Login.Controllers
             return _context.Usertables.Any(e => e.Id == id);
         }
 
-        // GET: Usertables/SignUp
-        public async Task<IActionResult> View1()
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> View1([Bind("Id,FirstName,LastName,Email,PhoneNumber,Password,DateOfBirth")] Usertable usertable)
-        {
-
-            usertable.CreateTime = GetUtcNow().ToString();
-            if (ModelState.IsValid)
-            {
-                _context.Add(usertable);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(usertable);
-
-            static DateTime GetUtcNow()
-            {
-                return DateTime.UtcNow;
-            }
-        }
     }
 }
