@@ -41,6 +41,18 @@ namespace Login.Controllers
         {
             
             usertable.CreateTime = GetUtcNow().ToString();
+
+            try
+            {
+                var ez = _context.Usertables
+                    .Single(e => e.Email == usertable.Email);
+                if (ez.Email == usertable.Email)
+                {
+                    return View();
+                }
+            }
+            catch{ }
+
             if (ModelState.IsValid)
             {
                 _context.Add(usertable);
