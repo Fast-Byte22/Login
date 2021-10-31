@@ -22,5 +22,6 @@ namespace Login.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public string DateOfBirth { get; set; }
+        public string PassHash { get; set; }
     }
 }

@@ -51,7 +51,9 @@ namespace Login.Controllers
                     return View();
                 }
             }
-            catch{ }
+            catch{
+                return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
@@ -93,9 +95,6 @@ namespace Login.Controllers
         }
 
 
-        // POST: Usertables/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,CreateTime,FirstName,LastName,Email,PhoneNumber,Password,DateOfBirth")] Usertable usertable)
@@ -194,5 +193,43 @@ namespace Login.Controllers
             return _context.Usertables.Any(e => e.Id == id);
         }
 
+        // GET: Usertables/Login
+        [HttpGet]
+        public async Task<IActionResult> LogIn(string? status)
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LogIn(string Email, string Password)
+        {
+            if (Email.Length < 4)
+            {
+                return NotFound("s");
+            }
+            else if (Password.Length < 4)
+            {
+                return NotFound();
+            }
+
+
+            try
+            {
+                var ez = _context.Usertables.Single(e => e.Email == Email && e.Password == Password);
+
+
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+
+                return RedirectToAction(nameof(SignUp));
+            }
+       
+
+        }
     }
 }
