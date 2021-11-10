@@ -1,5 +1,3 @@
-using System;
-
 namespace Login.Models
 {
     public class ErrorViewModel

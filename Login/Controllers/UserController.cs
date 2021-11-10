@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Login.Context;
+using Login.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Login.Context;
-using Login.Models;
 
 namespace Login.Controllers
 {
@@ -26,20 +24,17 @@ namespace Login.Controllers
         }
 
         // GET: Usertables/SignUp
-        public async Task<IActionResult> SignUp()
+        public IActionResult SignUp()
         {
             return View();
         }
-        public async Task<IActionResult> List()
-        {
-            return NotFound();
-        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SignUp([Bind("Id,FirstName,LastName,Email,PhoneNumber,Password,DateOfBirth")] Usertable usertable)
         {
-            
+
             usertable.CreateTime = GetUtcNow().ToString();
 
 
@@ -56,7 +51,8 @@ namespace Login.Controllers
                     return RedirectToAction(nameof(LogIn));
                 }
             }
-            catch{
+            catch
+            {
 
                 if (ModelState.IsValid)
                 {
@@ -75,7 +71,7 @@ namespace Login.Controllers
             }
         }
 
-      
+
         // GET: Usertables/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -201,10 +197,17 @@ namespace Login.Controllers
 
         // GET: Usertables/Login
         [HttpGet]
-        public async Task<IActionResult> LogIn(string? status)
+        public IActionResult LogIn(string? error)
         {
+            ViewData["E"] = error;
+            TempData["Error Message"] = error;
 
             return View();
+        }
+        public IActionResult MessageError(string a, string s)
+        {
+
+            return RedirectToAction(a, "User", s);
         }
 
         [HttpPost]
@@ -223,7 +226,7 @@ namespace Login.Controllers
 
             try
             {
-                var ez = _context.Usertables.Single(e => e.Email == Email && e.Password == Password);
+                var ez = await _context.Usertables.SingleAsync(e => e.Email == Email && e.Password == Password);
 
 
 
@@ -232,10 +235,8 @@ namespace Login.Controllers
             catch
             {
 
-                return RedirectToAction(nameof(SignUp));
+                return MessageError("Login", "ErrorM");
             }
-       
-
         }
     }
 }

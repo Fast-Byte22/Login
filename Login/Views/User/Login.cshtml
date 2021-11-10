@@ -1,11 +1,14 @@
 ﻿@model Login.Models.LogInViewModel
+@using Microsoft.AspNetCore.Authentication.Cookies
 @{
     
 }
 
 
 
-<h1>Sign Up Form</h1>
+<h1>Log in!</h1>
+
+<p runat="server" id="parag"> Hello</p>
 
 <hr />
 <div class="row">
@@ -33,3 +36,9 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

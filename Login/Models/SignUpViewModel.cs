@@ -2,14 +2,14 @@
 
 namespace Login.Models
 {
-    public class SignUpViewModel 
+    public class SignUpViewModel
     {
 
         public int Id { get; set; }
         [Required(ErrorMessage = "First Name is required")]
         [MaxLength(42, ErrorMessage = "First name is too long (42  max.)")]
         [MinLength(3, ErrorMessage = "First name must be at least 3 characters long.")]
-        
+
         [RegularExpression(@"^[A-zÀ-Ÿ-]*$", ErrorMessage = "Invalid characters.")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Name is required")]
@@ -19,14 +19,14 @@ namespace Login.Models
         public string LastName { get; set; }
 
         [DataType(DataType.EmailAddress)]
-        [MaxLength(255,ErrorMessage ="Email adress is too long.")]
-        [MinLength(6,ErrorMessage ="Email adress is too short.")]
+        [MaxLength(255, ErrorMessage = "Email adress is too long.")]
+        [MinLength(6, ErrorMessage = "Email adress is too short.")]
         [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
 
         [DataType(DataType.Password)]
         [MaxLength(255, ErrorMessage = "Password is too long")]
-        [MinLength(8,ErrorMessage = "Password is too short.")]
+        [MinLength(8, ErrorMessage = "Password is too short.")]
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
 

@@ -1,16 +1,15 @@
+using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
+using JavaScriptEngineSwitcher.V8;
 using Login.Context;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using React.AspNet;
 
 namespace Login
 {
@@ -28,6 +27,19 @@ namespace Login
         {
             services.AddControllersWithViews();
             services.AddDbContext<usersContext>(options => options.UseMySQL("Server=127.0.0.1;Port=3306;Database=users;Uid=admin;Pwd=bartsql666;SslMode=Preferred;"));
+            services.AddApplicationInsightsTelemetry();
+            services.AddControllersWithViews();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddReact();
+            services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName)
+                .AddV8();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/user/login/";
+                    //options.AccessDeniedPath = 
+                }
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,12 +62,35 @@ namespace Login
 
             app.UseAuthorization();
 
+            app.UseAuthentication();
+            var cookiePolicyOptions = new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = SameSiteMode.Strict,
+            };
+
+            app.UseCookiePolicy(cookiePolicyOptions);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                
             });
+
+            // Initialise ReactJS.NET. Must be before static files.
+            //app.UseReact(config =>
+            //{
+            //    // If you want to use server-side rendering of React components,
+            //    // add all the necessary JavaScript files here. This includes
+            //    // your components as well as all of their dependencies.
+            //    // See http://reactjs.net/ for more information. Example:
+            //    //config
+            //    //  .AddScript("~/js/First.jsx")
+            //    //   .AddScript("~/js/Second.jsx");
+
+            //});
         }
     }
 }

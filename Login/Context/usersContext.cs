@@ -1,7 +1,5 @@
-﻿using System;
-using Login.Models;
+﻿using Login.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
