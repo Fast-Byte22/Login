@@ -42,25 +42,31 @@ namespace Login.Controllers
             
             usertable.CreateTime = GetUtcNow().ToString();
 
+
             try
             {
                 var ez = _context.Usertables
                     .Single(e => e.Email == usertable.Email);
-                if (ez.Email == usertable.Email)
+                if (ez.Email != usertable.Email)
                 {
                     return View();
                 }
+                else
+                {
+                    return RedirectToAction(nameof(LogIn));
+                }
             }
             catch{
-                return NotFound();
+
+                if (ModelState.IsValid)
+                {
+                    _context.Add(usertable);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
 
-            if (ModelState.IsValid)
-            {
-                _context.Add(usertable);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+
             return View(usertable);
 
             static DateTime GetUtcNow()

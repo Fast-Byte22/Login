@@ -6,17 +6,16 @@ namespace Login.Models
     {
 
         public int Id { get; set; }
-
+        [Required(ErrorMessage = "First Name is required")]
         [MaxLength(42, ErrorMessage = "First name is too long (42  max.)")]
         [MinLength(3, ErrorMessage = "First name must be at least 3 characters long.")]
-        [Required(ErrorMessage = "First Name is required")]
+        
         [RegularExpression(@"^[A-zÀ-Ÿ-]*$", ErrorMessage = "Invalid characters.")]
         public string FirstName { get; set; }
-
-        [MaxLength(42, ErrorMessage = "Last name is too long (42  max.)")]
-        [MinLength(3, ErrorMessage = "Last name must be at least 3 characters long.")]
         [Required(ErrorMessage = "Name is required")]
-        [RegularExpression(@"^[A - zÀ - Ÿ -] *$*$", ErrorMessage = "Invalid characters.")]
+        [MaxLength(42, ErrorMessage = "Name is too long (42  max.)")]
+        [MinLength(3, ErrorMessage = "Name must be at least 3 characters long.")]
+        [RegularExpression(@"^[A-zÀ-Ÿ-]*$", ErrorMessage = "Invalid characters.")]
         public string LastName { get; set; }
 
         [DataType(DataType.EmailAddress)]

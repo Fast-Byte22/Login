@@ -2,14 +2,16 @@
 using Login.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Login.Migrations
 {
     [DbContext(typeof(usersContext))]
-    partial class usersContextModelSnapshot : ModelSnapshot
+    [Migration("20211110175053_Priv")]
+    partial class Priv
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
