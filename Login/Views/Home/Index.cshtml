@@ -1,5 +1,14 @@
-﻿@{ 
-    
+﻿@{
+    Layout = "_Layout2";
     ViewData["Title"] = "Home";
 }
-<h1 class="control-label"> Hello World!</h1>
+
+<h1>Hello!</h1>
+
+
+
+@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

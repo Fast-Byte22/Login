@@ -36,8 +36,9 @@ namespace Login
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
+
                     options.LoginPath = "/user/login/";
-                    //options.AccessDeniedPath = 
+                    options.AccessDeniedPath = "/home/AccesDenied";
                 }
                 );
         }

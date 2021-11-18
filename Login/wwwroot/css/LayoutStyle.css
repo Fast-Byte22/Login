@@ -1,0 +1,86 @@
+﻿body {
+    background-color: #36393e;
+    margin-bottom: 60px;
+}
+
+.footer {
+    background-color: /* #7289da*/ #282b30;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 40px;
+}
+.footer p {
+    color: #fff;
+    font-size: 18px;
+}
+
+nav {
+    background-color: #1e2124;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+/*    color: #fff;
+    background-color: #1b6ec2; 
+    border-color: #1861ac;*/
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+h1, h2, h3, h4, h5, h6, p, a {
+    color: white;
+}
+
+a{
+
+}
+
+a.active {
+    text-decoration: none;
+}
+
+a.hover {
+    color: #7289da;
+    text-decoration:  none;
+}
+
+a:visited {
+    color:#fff;
+    text-decoration: none;
+}
+.date-input {
+    border-radius:9px;  
+}
+
+.error-box {
+    vertical-align: top;
+    float: right;
+    height: 40px;
+    width: 250px;
+    background-color: #ad000c;
+    border-radius:3px;
+}
+
+.error-box p {
+    margin: 5px 6px 5px 5px;
+    color: black;
+    font-size:18px;
+    font-weight: 700;
+
+}

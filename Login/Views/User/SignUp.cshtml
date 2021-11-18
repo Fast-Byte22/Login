@@ -1,10 +1,11 @@
 ﻿@model Login.Models.SignUpViewModel
 @{
     ViewData["Title"] = "SignUp";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "_Layout2";
 }
 
-<h1>Sign Up Form</h1>
+
+<h1>Sign Up </h1>
 
 <hr />
 <div class="row">
@@ -12,35 +13,35 @@
         <form asp-action="SignUp" id="SignUpForm" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
+                <label asp-for="FirstName" class="control-label text-white"></label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
+                <label asp-for="LastName" class="control-label text-white"></label>
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
+                <label asp-for="Email" class="control-label text-white"></label>
                 <input asp-for="Email" type="email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
 
             </div>
 
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
+                <label asp-for="Password" class="control-label text-white"></label>
                 <input asp-for="Password" type="password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RePassword" class="control-label">Confirm Password</label>
+                <label asp-for="RePassword" class="control-label text-white">Confirm Password</label>
                 <input asp-for="RePassword" type="password" class="form-control" />
                 <span asp-validation-for="RePassword" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DateOfBirth" class="control-label"></label>
-                <input asp-for="DateOfBirth" type="date" class="form-control" />
+                <label class="control-label text-white">Date of Birth</label>
+                <input asp-for="DateOfBirth" type="date" class="control date-input" />
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -52,7 +53,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="card-link">Back to List</a>
 </div>
 
 
@@ -60,4 +61,18 @@
 
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
+}
+
+@section ErrorMessage{
+    @{ string o = ViewBag.error.ToString();
+        if (o.Length != 0)
+        {
+            <div class="error-box">
+                <p>
+                    @ViewBag.error
+
+                </p>
+            </div>
+        }
+    }
 }

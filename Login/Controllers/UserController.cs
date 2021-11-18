@@ -24,8 +24,17 @@ namespace Login.Controllers
         }
 
         // GET: Usertables/SignUp
-        public IActionResult SignUp()
+        public IActionResult SignUp(string error)
         {
+            //TempData["error"]= error;
+            if (error != null)
+            {
+                ViewBag.error = error;
+            }
+            else
+            {
+                ViewBag.error = "";
+            }
             return View();
         }
 
@@ -48,7 +57,8 @@ namespace Login.Controllers
                 }
                 else
                 {
-                    return RedirectToAction(nameof(LogIn));
+                    return SignUp("Account already exist.");
+                    //return RedirectToAction(nameof(SignUp),"User","Account already exist.");
                 }
             }
             catch
