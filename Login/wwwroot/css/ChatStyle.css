@@ -1,0 +1,48 @@
+﻿.content-body {
+
+}
+.content-chat-body{
+    margin: 1rem 1rem 1rem 1rem;
+}
+.chat-body {
+    /*border:1px solid white;*/
+    margin: 5% 10rem 0 5%;
+    height: 500px;
+    width: 90%;
+    background-color: #5865F2 ;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-break: break-word;
+}
+.chat-ui {
+    margin: 5px 0 0 5%;
+    height: 500px;
+    width: 90%;
+}
+.chat-ui input {
+    width: 90%;
+    height:auto;
+    
+}
+.chat-ui button{
+    width: 9%;
+}
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00D5FF;
+    border-radius: 20px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #FC44FC;
+    }
+
+::-webkit-scrollbar-track {
+    background: #36393E;
+    border-radius: 0px;
+    box-shadow: inset 0px 0px 0px 0px #F0F0F0;
+}
