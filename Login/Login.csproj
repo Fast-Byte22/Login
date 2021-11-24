@@ -6,12 +6,15 @@
 
   
   <ItemGroup>
+    <!--<PackageReference Include="CoreAdmin" Version="2.0.0" />-->
     <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.3.0" />
-    <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.13.3" />
+    <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.14.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.19.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="5.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="5.0.12" />
     <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="5.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />

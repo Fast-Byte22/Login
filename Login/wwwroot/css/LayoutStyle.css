@@ -68,11 +68,12 @@ a:visited {
     border-radius:9px;  
 }
 
+
 .error-box {
     vertical-align: top;
     float: right;
     height: 40px;
-    width: 250px;
+    width: 270px;
     background-color: #ad000c;
     border-radius:3px;
 }
@@ -83,4 +84,19 @@ a:visited {
     font-size:18px;
     font-weight: 700;
 
+}
+
+.nava {
+    /*float:right;*/
+    /*text-align:right;*/
+    margin-left: 80%;
+    /*justify-content: right;*/
+    /*list-style-type: none;*/
+    /*display: flex;*/
+}
+
+@media only screen and (max-width: 600px) {
+    .nava {
+        margin-left:0;
+    }
 }

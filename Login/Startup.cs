@@ -1,6 +1,7 @@
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using JavaScriptEngineSwitcher.V8;
 using Login.Context;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using React.AspNet;
+using System;
 
 namespace Login
 {
@@ -36,9 +38,12 @@ namespace Login
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
-
+                    //options.Validate();
                     options.LoginPath = "/user/login/";
                     options.AccessDeniedPath = "/home/AccesDenied";
+                    //options.ExpireTimeSpan = TimeSpan.FromDays(30);
+                    //options.Cookie.Expiration = TimeSpan.FromDays(30);
+                    options.SlidingExpiration = true;
                 }
                 );
         }
@@ -64,21 +69,16 @@ namespace Login
             app.UseAuthorization();
 
             app.UseAuthentication();
-            var cookiePolicyOptions = new CookiePolicyOptions
-            {
-                MinimumSameSitePolicy = SameSiteMode.Strict,
-            };
 
-            app.UseCookiePolicy(cookiePolicyOptions);
+            app.UseCookiePolicy();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-                
             });
+
 
             // Initialise ReactJS.NET. Must be before static files.
             //app.UseReact(config =>

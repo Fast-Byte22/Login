@@ -16,16 +16,25 @@
 }
 .chat-ui {
     margin: 5px 0 0 5%;
-    height: 500px;
+    height: 70px;
     width: 90%;
+    
 }
 .chat-ui input {
     width: 90%;
     height:auto;
+    border-radius:9px;
     
+}
+button:focus{
+    border:none;
+}
+textarea:focus, input:focus , button:focus {
+    outline: none;
 }
 .chat-ui button{
     width: 9%;
+    border-radius: 90px;
 }
 ::-webkit-scrollbar {
     width: 5px;

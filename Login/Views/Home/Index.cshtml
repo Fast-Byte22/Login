@@ -5,7 +5,20 @@
 
 <h1>Hello!</h1>
 
+@section ErrorMessage{
 
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+
+
+        <div class="error-box">
+            <p> @TempData["ErrorMessage"]</p>
+        </div>
+
+    }
+
+}
 
 @section Scripts {
 
