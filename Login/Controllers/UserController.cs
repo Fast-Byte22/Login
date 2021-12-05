@@ -11,6 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
+
 namespace Login.Controllers
 {
 
@@ -32,8 +33,25 @@ namespace Login.Controllers
         }
 
         // GET: Usertables/SignUp
-        public IActionResult SignUp(string error)
+        public async Task<IActionResult> SignUp(string error)
         {
+            var x = HttpContext.User.Claims.Single(c => c.Type == "id");
+            var xx = HttpContext.User.Claims.Single(c => c.Type == ClaimTypes.Role);
+            if (x.Value != null && xx.Value != null)
+            {
+                try
+                {
+                    var ez = await _context.Usertables.SingleAsync(e => e.Id == Int32.Parse(x.Value) && e.Role == xx.Value.ToString());
+
+                    return Redirect(nameof(Index));
+                }
+                catch
+                {
+
+
+                }
+
+            }
             //TempData["error"]= error;
             if (error != null)
             {
@@ -65,8 +83,8 @@ namespace Login.Controllers
                 }
                 else
                 {
-                    return SignUp("Account already exist.");
-                    //return RedirectToAction(nameof(SignUp),"User","Account already exist.");
+                    return MessageError("SignUp","Account already exist.");
+
                 }
             }
             catch
@@ -218,8 +236,26 @@ namespace Login.Controllers
         
         [RequireHttps]
         [HttpGet]
-        public IActionResult LogIn(string? error)
+        public async Task<IActionResult> LogIn(string? error)
         {
+            var x = HttpContext.User.Claims.Single(c => c.Type == "id");
+            var xx = HttpContext.User.Claims.Single(c => c.Type == ClaimTypes.Role);
+            if (x.Value != null && xx.Value != null)
+            {
+                try
+                {
+                    var ez = await _context.Usertables.SingleAsync(e => e.Id == Int32.Parse(x.Value) && e.Role == xx.Value.ToString());
+
+                    return Redirect(nameof(Index));
+                }
+                catch
+                {
+
+
+                }
+
+            }
+
             if (error == null)
             {
                 //TempData["ErrorMessage"] = "";
@@ -240,6 +276,9 @@ namespace Login.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogIn(string Email, string Password)
         {
+            var x = HttpContext.User.Claims.Single(c => c.Type == "id");
+            var xx = HttpContext.User.Claims.Single(c => c.Type == ClaimTypes.Role);
+
             if (Email.Length < 4)
             {
                 return NotFound();
@@ -253,9 +292,8 @@ namespace Login.Controllers
 
             try
             {
-
-                var zz =/*HttpContextAccessor.*/ HttpContext.Request.Cookies.ToList(); 
                 var ez = await _context.Usertables.SingleAsync(e => e.Email == Email && e.Password == Password);
+
 
                 var claims = new List<Claim> {
                     new Claim("id",ez.Id.ToString(), ClaimValueTypes.Integer),
@@ -272,10 +310,7 @@ namespace Login.Controllers
                     IsPersistent = true,
                 };
 
-                await HttpContext.SignInAsync(
-                  CookieAuthenticationDefaults.AuthenticationScheme,
-                  new ClaimsPrincipal(claimsIdentity),
-                  authProperties);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity),authProperties);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -288,11 +323,9 @@ namespace Login.Controllers
         [HttpPost]
         public async Task<IActionResult> LogOut()
         {
-            var zz =/*HttpContextAccessor.*/ HttpContext.Response.Cookies.ToString();
             await HttpContext.SignOutAsync();
             return MessageError("", "Sign out","");
         }
 
     }
-
 }
