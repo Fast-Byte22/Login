@@ -1,5 +1,6 @@
 ﻿using Login.Context;
 using Login.Models;
+using Login.Custom;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+
 
 
 namespace Login.Controllers
@@ -73,7 +75,11 @@ namespace Login.Controllers
         {
 
             usertable.CreateTime = GetUtcNow().ToString();
-
+            usertable.Role = "0";
+            HashPasscs hashPasscs = new HashPasscs();
+            hashPasscs = hashPasscs.HashPass(usertable.Password);
+            usertable.PassHash = hashPasscs.hash;
+            usertable.salt = hashPasscs.salt;
 
             try
             {
@@ -294,7 +300,16 @@ namespace Login.Controllers
 
             try
             {
-                var ez = await _context.Usertables.SingleAsync(e => e.Email == Email && e.Password == Password);
+                
+
+                var ez = await _context.Usertables.SingleAsync(e => e.Email == Email );
+
+
+
+                if (ez.PassHash != HashPasscs.CheckHashPass(Password,ez.salt))
+                {
+                    return MessageError("LogIn", "Invalid Email or Password");
+                }
 
 
                 var claims = new List<Claim> {

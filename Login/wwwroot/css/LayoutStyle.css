@@ -112,3 +112,14 @@ a:visited {
     line-height: 24px !important;
 }
 
+/*input[type=button] {
+    outline: none;
+}
+
+input[type=button]::-moz-focus-inner {
+    border: 0;
+}
+input[type=button]:focus {
+    outline: none !important;
+} 
+*/
