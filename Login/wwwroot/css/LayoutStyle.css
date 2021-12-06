@@ -72,31 +72,43 @@ a:visited {
 .error-box {
     vertical-align: top;
     float: right;
-    height: 40px;
-    width: 270px;
+    height: auto;
+    width: auto;
     background-color: #ad000c;
     border-radius:3px;
 }
 
 .error-box p {
-    margin: 5px 6px 5px 5px;
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
     color: black;
-    font-size:18px;
+    font-size: 18px;
     font-weight: 700;
-
 }
+.error-box i {
+        /*margin: 5px 8px 5px 5px;*/
+        margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+        color: black;
 
-.nava {
-    /*float:right;*/
-    /*text-align:right;*/
-    margin-left: 80%;
-    /*justify-content: right;*/
-    /*list-style-type: none;*/
-    /*display: flex;*/
-}
-
-@media only screen and (max-width: 600px) {
-    .nava {
-        margin-left:0;
+        font-weight: 700;
     }
+
+.navLogOutButton, .navLogOutButton :hover, .navLogOutButton :visited, .navLogOutButton :active {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #fff !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    font-size: 1rem !important;
+    /*margin-top:10px;*/
+    /*padding:0.5rem 1rem;*/
+    font-family: -apple-system !important;
+    text-align: left !important;
+    margin-top: 0.5rem !important;
+    margin-left: 1rem !important;
+    line-height: 24px !important;
 }
+

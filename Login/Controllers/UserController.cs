@@ -35,23 +35,25 @@ namespace Login.Controllers
         // GET: Usertables/SignUp
         public async Task<IActionResult> SignUp(string error)
         {
-            var x = HttpContext.User.Claims.Single(c => c.Type == "id");
-            var xx = HttpContext.User.Claims.Single(c => c.Type == ClaimTypes.Role);
-            if (x.Value != null && xx.Value != null)
+
+
+            try
             {
-                try
+                var x = HttpContext.User.Claims.Single(c => c.Type == "id");
+                var xx = HttpContext.User.Claims.Single(c => c.Type == ClaimTypes.Role);
+                if (x.Value != null && xx.Value != null)
                 {
                     var ez = await _context.Usertables.SingleAsync(e => e.Id == Int32.Parse(x.Value) && e.Role == xx.Value.ToString());
-
                     return Redirect(nameof(Index));
-                }
-                catch
-                {
-
-
                 }
 
             }
+            catch
+            {
+
+
+            }
+
             //TempData["error"]= error;
             if (error != null)
             {
@@ -238,15 +240,18 @@ namespace Login.Controllers
         [HttpGet]
         public async Task<IActionResult> LogIn(string? error)
         {
-            var x = HttpContext.User.Claims.Single(c => c.Type == "id");
-            var xx = HttpContext.User.Claims.Single(c => c.Type == ClaimTypes.Role);
-            if (x.Value != null && xx.Value != null)
-            {
+
+
                 try
                 {
+                    var x = HttpContext.User.Claims.Single(c => c.Type == "id");
+                    var xx = HttpContext.User.Claims.Single(c => c.Type == ClaimTypes.Role);
+                if (x.Value != null && xx.Value != null)
+                {
                     var ez = await _context.Usertables.SingleAsync(e => e.Id == Int32.Parse(x.Value) && e.Role == xx.Value.ToString());
-
                     return Redirect(nameof(Index));
+                }
+
                 }
                 catch
                 {
@@ -254,7 +259,6 @@ namespace Login.Controllers
 
                 }
 
-            }
 
             if (error == null)
             {
@@ -276,8 +280,6 @@ namespace Login.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogIn(string Email, string Password)
         {
-            var x = HttpContext.User.Claims.Single(c => c.Type == "id");
-            var xx = HttpContext.User.Claims.Single(c => c.Type == ClaimTypes.Role);
 
             if (Email.Length < 4)
             {
@@ -320,11 +322,25 @@ namespace Login.Controllers
                 return MessageError("LogIn", "Invalid Email or Password");
             }
         }
+
         [HttpPost]
         public async Task<IActionResult> LogOut()
         {
-            await HttpContext.SignOutAsync();
-            return MessageError("", "Sign out","");
+            try
+            {
+                var x = HttpContext.User.Claims.Single(c => c.Type == "id");
+                var xx = HttpContext.User.Claims.Single(c => c.Type == ClaimTypes.Role);
+                await HttpContext.SignOutAsync();
+                return MessageError("LogIn", "Log out");
+
+            }
+            catch
+            {
+                return RedirectToAction(nameof(LogIn));
+
+            }
+
+
         }
 
     }
