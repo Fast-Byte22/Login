@@ -21,7 +21,7 @@ namespace Login.Controllers
         {
             return View();
         }
-         public IActionResult AccessDenied()
+         public IActionResult AccesDenied()
         {
             return View();
         }

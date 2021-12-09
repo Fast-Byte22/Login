@@ -28,35 +28,25 @@ namespace Login.Controllers
             _context = context;
         }
 
-        // GET: Usertables
         public async Task<IActionResult> Index()
         {
             return View(await _context.Usertables.ToListAsync());
         }
 
-        // GET: Usertables/SignUp
         public async Task<IActionResult> SignUp(string error)
         {
-
-
             try
             {
-                var x = HttpContext.User.Claims.Single(c => c.Type == "id");
-                var xx = HttpContext.User.Claims.Single(c => c.Type == ClaimTypes.Role);
-                if (x.Value != null && xx.Value != null)
+                var CookiesId = HttpContext.User.Claims.Single(c => c.Type == "id");
+                var CookiesRole = HttpContext.User.Claims.Single(c => c.Type == ClaimTypes.Role);
+                if (CookiesId.Value != null && CookiesRole.Value != null)
                 {
-                    var ez = await _context.Usertables.SingleAsync(e => e.Id == Int32.Parse(x.Value) && e.Role == xx.Value.ToString());
+                    var ez = await _context.Usertables.SingleAsync(e => e.Id == Int32.Parse(CookiesId.Value) && e.Role == CookiesRole.Value.ToString());
                     return Redirect(nameof(Index));
                 }
-
             }
-            catch
-            {
+            catch { }
 
-
-            }
-
-            //TempData["error"]= error;
             if (error != null)
             {
                 ViewBag.error = error;
@@ -115,8 +105,6 @@ namespace Login.Controllers
             }
         }
 
-
-        // GET: Usertables/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -134,7 +122,6 @@ namespace Login.Controllers
             return View(usertable);
         }
 
-        // GET: Usertables/Create
         public IActionResult Create()
         {
             return View();
@@ -154,7 +141,6 @@ namespace Login.Controllers
             return View(usertable);
         }
 
-        // GET: Usertables/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -170,9 +156,6 @@ namespace Login.Controllers
             return View(usertable);
         }
 
-        // POST: Usertables/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,CreateTime,FirstName,LastName,Email,PhoneNumber,Password,DateOfBirth")] Usertable usertable)
@@ -205,7 +188,6 @@ namespace Login.Controllers
             return View(usertable);
         }
 
-        // GET: Usertables/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -223,7 +205,6 @@ namespace Login.Controllers
             return View(usertable);
         }
 
-        // POST: Usertables/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -239,7 +220,6 @@ namespace Login.Controllers
             return _context.Usertables.Any(e => e.Id == id);
         }
 
-        // GET: Usertables/Login
 #nullable enable
         
         [RequireHttps]
