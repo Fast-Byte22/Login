@@ -8,4 +8,4 @@ Properties:
   - chats
 
 ## Mysql
-Connected to Mysql database.
+Connected to local Mysql database.
