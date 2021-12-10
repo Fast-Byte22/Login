@@ -1,5 +1,5 @@
 # Login
-Just a login web app in MVC.
+Just a login web app in asp.net core MVC.
 
 Properties:
   - Mysql database
